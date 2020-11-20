@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block container %}
+  <main class="container mt-5">
+    <div class="col-12 col-sm-10 col-lg-6 offset-lg-3 offset-sm-1">
+      <form action="{{ url_for('request_view') }}" class="card mb-5" method="POST">
+        <div class="card-body text-center pt-5">
+          <h1 class="h3 card-title mt-4 mb-2">Подбор преподавателя</h1>
+          <p class="px-5">Напишите, чего вам нужно и&nbsp;мы&nbsp;подберем отличных&nbsp;ребят</p>
+        </div>
+        <hr>
+        <div class="card-body mx-3">
+          <div class="row">
+            <div class="col">
+              {{ form.csrf_token }}
+              <p>{{ form.goal.label(class_="form-check-label") }}</p>
+              <div class="form-check ">
+                {% for subfield in form.goal %}
+                  <tr>
+                    <td>{{ subfield(class_="form-check-input") }}  </td>
+                    <td>{{ subfield.label(class_="form-check-label") }}</td> <br>
+                  </tr>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="col">
+              <p>{{ form.time.label(class_="form-check-label") }}</p>
+              <div class="form-check">
+                {% for subfield in form.time %}
+                  <tr>
+                    <td>{{ subfield(class_="form-check-input") }}</td>
+                    <td>{{ subfield.label(class_="form-check-label") }}</td> <br>
+                  </tr>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="card-body mx-3">
+          {{ form.clientName.label(class_="mb-1 mt-2") }}
+              {% if form.clientName.errors %}
+                {{ form.clientName(class="invalid")}}
+              <span class="invalid-feedback">
+                  {% for error in form.clientName.errors %}
+                  {{ error }}
+                  {% endfor %}
+              </span>
+              {% else %}
+                {{ form.clientName(class_="form-control") }}
+              {% endif %}
+            {{ form.clientPhone.label(class_="mb-1 mt-2") }}
+              {% if form.clientPhone.errors %}
+                {{ form.clientPhone(class="invalid")}}
+              <span class="invalid-feedback">
+                  {% for error in form.clientPhone.errors %}
+                  {{ error }}
+                  {% endfor %}
+              </span>
+              {% else %}
+                {{ form.clientPhone(class_="form-control") }}
+              {% endif %}
+          {{ form.submit(class_="btn btn-primary mt-4 mb-2") }}
+        </div>
+      </form>
+    </div>
+  </main>
+{% endblock %}
