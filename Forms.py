@@ -4,11 +4,11 @@ from wtforms.fields.html5 import TelField
 from wtforms.validators import InputRequired
 
 from MyData import db, Goal
-
-goal_choices = []
-goals = db.session.query(Goal.ru_name).all()
-for goal in goals:
-    goal_choices.append((goal[0], goal[0]))
+#
+# goal_choices = []
+# goals = db.session.query(Goal.ru_name).all()
+# for goal in goals:
+#     goal_choices.append((goal[0], goal[0]))
 
 
 class BookingForm(FlaskForm):
