@@ -4,11 +4,11 @@ from wtforms.fields.html5 import TelField
 from wtforms.validators import InputRequired
 
 from MyData import db, Goal
-#
-# goal_choices = []
-# goals = db.session.query(Goal.ru_name).all()
-# for goal in goals:
-#     goal_choices.append((goal[0], goal[0]))
+
+goal_choices = []
+goals = db.session.query(Goal.ru_name).all()
+for goal in goals:
+    goal_choices.append((goal[0], goal[0]))
 
 
 class BookingForm(FlaskForm):
@@ -21,7 +21,7 @@ class BookingForm(FlaskForm):
 
 
 class RequestForm(FlaskForm):
-    goal = RadioField('Какая цель занятий?', choices=[("Для путешествий", "Для путешествий"), ("Для учебы", "Для учебы"), ("Для работы", "Для работы"), ("Для переезда", "Для переезда"), ("Для программирования", "Для программирования")], default="Для путешествий")
+    goal = RadioField('Какая цель занятий?', choices=goal_choices, default="Для путешествий")
     time = RadioField('Сколько времени есть?', choices=[
         ("1-2 часа в неделю", "1-2 часа в неделю"),
         ("3-5 часов в неделю", "3-5 часов в неделю"),
