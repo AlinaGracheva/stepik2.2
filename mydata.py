@@ -32,6 +32,7 @@ teachers_goals_association = db.Table(
 class Teacher(db.Model):
     __tablename__ = 'teachers'
     id = db.Column(db.Integer(), primary_key=True)
+
     name = db.Column(db.String(), nullable=False)
     about = db.Column(db.Text, nullable=False)
     rating = db.Column(db.Float, nullable=False)
@@ -47,6 +48,7 @@ class Teacher(db.Model):
 class Goal(db.Model):
     __tablename__ = 'goals'
     id = db.Column(db.Integer(), primary_key=True)
+
     eng_name = db.Column(db.String(), nullable=False)
     ru_name = db.Column(db.String(), nullable=False)
     pic = db.Column(db.String(), nullable=False)
@@ -59,6 +61,7 @@ class Goal(db.Model):
 class Booking(db.Model):
     __tablename__ = 'booking_table'
     id = db.Column(db.Integer(), primary_key=True)
+
     day = db.Column(db.String(), nullable=False)
     time = db.Column(db.String(), nullable=False)
     client_phone = db.Column(db.String(), nullable=False)
@@ -71,6 +74,7 @@ class Booking(db.Model):
 class Request(db.Model):
     __tablename__ = 'requests'
     id = db.Column(db.Integer(), primary_key=True)
+
     study_hours = db.Column(db.String(), nullable=False)
     client_phone = db.Column(db.String(), nullable=False)
     client_name = db.Column(db.String(), nullable=False)
