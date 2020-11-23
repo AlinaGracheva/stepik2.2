@@ -3,8 +3,8 @@ import random
 import flask
 from flask import Flask, render_template
 
-import Forms
-from MyData import db, migrate, Goal, Teacher, Request, Booking, teachers_list
+import forms
+from mydata import db, migrate, Goal, Teacher, Request, Booking, teachers_list
 from config import Config
 
 app = Flask(__name__)
@@ -50,7 +50,7 @@ def teachers_profile_view(teacher_id):
 
 @app.route('/request/', methods=["POST", "GET"])
 def request_view():
-    form = Forms.RequestForm()
+    form = forms.RequestForm()
     if flask.request.method == 'GET':
         return render_template("request.html", form=form)
     if form.validate_on_submit():
@@ -68,7 +68,7 @@ def request_view():
 
 @app.route('/booking/<int:teacher_id>/<day>/<time>/', methods=["POST", "GET"])
 def booking_view(teacher_id, day, time):
-    form = Forms.BookingForm()
+    form = forms.BookingForm()
     desired_teacher = db.session.query(Teacher).get_or_404(teacher_id)
     teacher = teachers_list([desired_teacher])
     day_of_the_week = {
