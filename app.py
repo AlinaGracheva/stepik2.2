@@ -88,10 +88,21 @@ def booking_view(teacher_id, day, time):
         client_phone = form.clientPhone.data
         client_weekday = form.clientWeekday.data
         client_time = form.clientTime.data
-        booking = Booking(day=client_weekday, time=client_time, client_phone=client_phone, client_name=client_name, teacher=desired_teacher)
+        booking = Booking(
+            day=client_weekday,
+            time=client_time,
+            client_phone=client_phone,
+            client_name=client_name,
+            teacher=desired_teacher
+        )
         db.session.add(booking)
         db.session.commit()
-        return render_template("booking_done.html", day=day_of_the_week[day], time=client_time, clientName=client_name, clientPhone=client_phone)
+        return render_template("booking_done.html",
+                               day=day_of_the_week[day],
+                               time=client_time,
+                               clientName=client_name,
+                               clientPhone=client_phone
+                               )
     return render_template("booking.html", form=form, day=day, day_of_the_week=day_of_the_week, teacher=teacher[0], time=time)
 
 
